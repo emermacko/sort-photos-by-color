@@ -8,6 +8,8 @@ import { confetti } from "dom-confetti";
 const CLIENT_ID = "084e31407b21fa0";
 const balance = [1, 0, 0.1];
 
+var originalOrder;
+
 window.addEventListener("load", () => {
     document.querySelector('#content').fadeIn();
 });
@@ -16,7 +18,7 @@ function colorDistance(color1, color2) {
     var result = 0;
     color1 = rgbToHsl(color1[0], color1[1], color1[2]);
     color2 = rgbToHsl(color2[0], color2[1], color2[2]);
-    for (var i = 0; i < color1.length; i++) {
+    for(var i = 0; i < color1.length; i++) {
         result += (color1[i] - color2[i]) * (color1[i] - color2[i]) * balance[i];
     }
     return result;
@@ -42,11 +44,13 @@ async function main(albumID) {
     });
 
     const images = await Promise.all(imagesP);
+    originalOrder = images.slice(0);
 
     document.querySelector('#loading').fadeOut(500, true);
     const containerTop = document.querySelector('#container').offsetTop;
-    // window.scroll({ top: containerTop, left: 0, behavior: 'smooth' });
-    document.querySelector('#sort').fadeIn();
+    document.querySelectorAll('.button-bottom').forEach(element => {
+        element.fadeIn();
+    });
 
     const sortImages = () => {
         images.sort((i1, i2) => {
@@ -59,24 +63,34 @@ async function main(albumID) {
         });
     };
 
-    window.render = function() {
+    window.render = function(images) {
         displayWithPreview(images);
         document.querySelector('#images').fadeIn(500);
     };
 
     const button = document.querySelector("#sort");
     button.addEventListener("click", () => {
-        const images = document.querySelector("#images");
-        images.fadeOut(500, undefined, undefined, function () {
+        const imgs = document.querySelector("#images");
+        imgs.fadeOut(500, undefined, undefined, function () {
             sortImages();
-            window.render();
+            window.render(images);
 
-            images.fadeIn(500);
+            imgs.fadeIn(500);
             confetti(button, { angle: 270, spread: 360, elementCount: 100 });
         });
     });
-    window.render();
+    window.render(images);
 }
+
+document.querySelector('#reset').addEventListener('click', function() {
+    const images = document.querySelector("#images");
+    const button = document.querySelector("#reset");
+
+    images.fadeOut(500, undefined, undefined, function () {
+        window.render(originalOrder);
+        confetti(button, { angle: 270, spread: 360, elementCount: 100 });
+    });
+});
 
 class ImagePreview {
     constructor(src, element, data) {
@@ -120,7 +134,6 @@ class ImagePreview {
         const idPreview = document.createElement("div");
 
         idPreview.innerHTML = order[this.data.id];
-
         idPreview.classList.add("id-preview");
 
         const previews = Object.entries(this.colors).map(([name, color]) => {
@@ -134,14 +147,14 @@ class ImagePreview {
                 window.render();
             });
 
-            if (this.selectedColor === name) {
+            if(this.selectedColor === name) {
                 preview.classList.add("selected");
             }
 
             return preview;
         });
 
-        for (let preview of previews) {
+        for(let preview of previews) {
             previewContainer.appendChild(preview);
         }
 
@@ -164,7 +177,7 @@ async function getImages(albumID) {
         },
     });
 
-    if (result.status !== 200) {
+    if(result.status !== 200) {
         throw new Error("Cannot load imgur album");
     }
 
@@ -174,10 +187,9 @@ async function getImages(albumID) {
 
 function displayWithPreview(images) {
     const grandParent = document.querySelector("#images");
-
     grandParent.innerHTML = "";
 
-    for (let image of images) {
+    for(let image of images) {
         const parent = image.render();
         grandParent.appendChild(parent);
     }
@@ -190,7 +202,7 @@ Element.prototype.fadeIn = function (duration=400, displayMode=false, limit=1, c
 
     this.classList.add('fading');
     this.style.transition = `opacity ${duration}ms ease-in`;
-    if (displayMode !== false) {
+    if(displayMode !== false) {
         this.style.display = displayMode;
     }
 
@@ -202,7 +214,7 @@ Element.prototype.fadeIn = function (duration=400, displayMode=false, limit=1, c
         this.classList.remove('fading');
         this.style.transition = currentTransiton;
 
-        if (typeof callback == 'function') {
+        if(typeof callback == 'function') {
             callback();
         }
     }, duration + 200);
