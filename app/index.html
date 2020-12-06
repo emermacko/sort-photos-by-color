@@ -2,16 +2,22 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
         <link rel="icon" type="image/png" href="./img/icons/favicon2.png"/>
-        <title>&mdash; Gallery</title>
+        <title>&mdash; Sort by color</title>
         <noscript><style> #content { opacity: 1 !important; } </style></noscript>
     </head>
     <body>
-        <button id="sort">SORT</button>
         <div id=content>
+            <div id="header">
+                <h1>Sort photos by color</h1>
+            </div>
             <div id="container">
                 <div id="images"></div>
             </div>
             <script src="./scripts/index.js"></script>
+            <div id="loading"><p>Loading . . .</p></div>
+        </div>
+        <div id="button-container">
+            <button id="sort" style="opacity: 0">SORT</button>
         </div>
     </body>
 </html>
