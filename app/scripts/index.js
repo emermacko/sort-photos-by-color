@@ -63,8 +63,8 @@ async function main(albumID) {
         });
     };
 
-    window.render = function(images) {
-        displayWithPreview(images);
+    window.render = function(imgs=images) {
+        displayWithPreview(imgs);
         document.querySelector('#images').fadeIn(500);
     };
 
