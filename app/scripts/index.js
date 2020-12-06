@@ -9,7 +9,6 @@ const CLIENT_ID = "084e31407b21fa0";
 const balance = [1, 0, 0.1];
 
 window.addEventListener("load", () => {
-    main().catch(error => console.error(error));
     document.querySelector('#content').fadeIn();
 });
 
@@ -23,8 +22,18 @@ function colorDistance(color1, color2) {
     return result;
 }
 
-async function main() {
-    const album = await getImages();
+document.querySelector("#album-confirm").addEventListener('click', function() {
+    const val = document.querySelector('#album-input').value;
+    const regex = /(https:\/\/)?(imgur\.com\/a\/)?([A-Za-z0-9_]{7})/;
+    if(val.match(regex)) {
+        document.querySelector('#input-container').fadeOut(300, true);
+        const albumID = val.replace(regex, '$3');
+        main(albumID).catch(error => console.error(error));
+    }
+})
+
+async function main(albumID) {
+    const album = await getImages(albumID);
     
     const imagesP = album.images.map(image => {
         const imageSrc = `https://i.imgur.com/${image.id}m.jpg`;
@@ -35,6 +44,8 @@ async function main() {
     const images = await Promise.all(imagesP);
 
     document.querySelector('#loading').fadeOut(500, true);
+    const containerTop = document.querySelector('#container').offsetTop;
+    // window.scroll({ top: containerTop, left: 0, behavior: 'smooth' });
     document.querySelector('#sort').fadeIn();
 
     const sortImages = () => {
@@ -55,12 +66,12 @@ async function main() {
 
     const button = document.querySelector("#sort");
     button.addEventListener("click", () => {
-        const $images = document.querySelector("#images");
-        $images.fadeOut(500, undefined, undefined, function () {
+        const images = document.querySelector("#images");
+        images.fadeOut(500, undefined, undefined, function () {
             sortImages();
             window.render();
 
-            $images.fadeIn(500);
+            images.fadeIn(500);
             confetti(button, { angle: 270, spread: 360, elementCount: 100 });
         });
     });
@@ -146,8 +157,8 @@ class ImagePreview {
     }
 }
 
-async function getImages() {
-    const result = await fetch(`https://api.imgur.com/3/album/2CtFNoI`, {
+async function getImages(albumID) {
+    const result = await fetch(`https://api.imgur.com/3/album/${albumID}`, {
         headers: {
             Authorization: `Client-ID ${CLIENT_ID}`,
         },
@@ -203,9 +214,6 @@ Element.prototype.fadeOut = function(duration=400, disable=false, limit=0, callb
 
     this.classList.add('fading');
     this.style.transition = `opacity ${duration}ms ease-out`;
-    if(disable) {
-        this.style.display = 'none';
-    }
     setTimeout(() => {
         this.style.opacity = limit;
     }, 100);
@@ -213,7 +221,9 @@ Element.prototype.fadeOut = function(duration=400, disable=false, limit=0, callb
     setTimeout(() => {
         this.classList.remove('fading');
         this.style.transition = currentTransiton;
-
+        if(disable) {
+            this.style.display = 'none';
+        }
         if(typeof callback == 'function') {
             callback();
         }

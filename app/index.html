@@ -10,14 +10,18 @@
             <div id="header">
                 <h1>Sort photos by color</h1>
             </div>
+            <div id="input-container">
+                <input id="album-input" placeholder="https://imgur.com/a/1234567" type="text">
+                <button class="button-green" id="album-confirm">LOAD</button>
+            </div>
             <div id="container">
                 <div id="images"></div>
             </div>
-            <script src="./scripts/index.js"></script>
             <div id="loading"><p>Loading . . .</p></div>
         </div>
         <div id="button-container">
-            <button id="sort" style="opacity: 0">SORT</button>
+            <button class="button-green" id="sort" style="opacity: 0">SORT</button>
         </div>
+        <script src="./scripts/index.js" defer></script>
     </body>
 </html>

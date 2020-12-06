@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&display=swap');
 
 * {
     -ms-overflow-style: none;
@@ -24,19 +24,59 @@ html, body {
     background-color: #FAFAFA;
 }
 
+#input-container {
+    background-color: #FAFAFA;
+    z-index: 2;
+    height: calc(100% - 100px);
+    font-size: #{"min(7vw, 25px)"};
+    width: 100vw;
+    height: calc(100% - 100px);
+    top: 100px;
+    left: 0px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &>#album-input {
+        font-weight: 400;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: calc(25vh + 50px);
+        height: 50px;
+        width: 80vw;
+        max-width: 270px;
+        padding: 10px 20px;
+        font-size: #{"min(6vw, 20px)"};
+        font-family: 'Barlow Condensed', sans-serif;
+        outline: none;
+        border: 1px solid #2CBE78;
+        border-radius: 30px;
+        margin-bottom: 50px;
+
+        &::placeholder {
+            opacity: .5;
+        }
+    }
+}
+
 #loading {
+    background-color: #FAFAFA;
+    opacity: 1;
     position: absolute;
     font-size: #{"min(7vw, 25px)"};
     width: 100vw;
     height: calc(100% - 100px);
     top: 100px;
     left: 0px;
-    display: flex;
     justify-content: center;
     align-items: center;
     transition: opacity .3s ease-in-out;
+    display: flex;
 
     &>p {
+        margin-top: -10vh;
         font-family: 'Barlow Condensed', sans-serif;
     }
 }
@@ -250,7 +290,7 @@ a {
 }
 
 
-#sort {
+.button-green {
     letter-spacing: 3px;
     font-family: 'Roboto Mono', monospace;
     width: 160px;
