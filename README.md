@@ -9,8 +9,8 @@
 
 ## How to
 - **You need to upload your photos to [imgur](https://imgur.com/upload)**
-    - You can set album to private & delete it later
-- Provide album `ID` or `URL` on the website
+    - You can set the album to private & delete it later
+- Paste album `ID` or `URL` on the website
 - Currently you can only take screenshot to save the results
     - Optionally use: [this](https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg?hl=en) extension
 
