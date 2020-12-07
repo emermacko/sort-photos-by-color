@@ -17,6 +17,7 @@
 <br>
 
 ## Features
+- Sort album of photos by color in somewhat accurate way
 - You can choose the color you want the photo to be sorted by
     - Available algorithms: [link](https://github.com/fast-average-color/fast-average-color/blob/master/docs/algorithms.md)
 
