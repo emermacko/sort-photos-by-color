@@ -12,9 +12,11 @@
 <br>
 
 ## Preview
+<br>
 <p align="center">
   <a href="https://bit.ly/sort-by-color" target="_blank"><b>Live demo</b></a>
 </p>
+<br>
 <p align="center">
   <img width="auto" height="auto" src="https://user-images.githubusercontent.com/25122875/101296059-a815a880-3821-11eb-83d9-645c77db4de2.gif">
 </p>
