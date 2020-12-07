@@ -18,9 +18,7 @@
 
 ## Features
 - You can choose the color you want the photo to be sorted by
-    - `sqrt` (default)
-    - `simple`
-    - `dominant`
+    - Available algorithms: [link](https://github.com/fast-average-color/fast-average-color/blob/master/docs/algorithms.md)
 
 <br>
 
