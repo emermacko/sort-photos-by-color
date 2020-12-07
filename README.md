@@ -14,6 +14,8 @@
 - Currently you can only take screenshot to save the results
     - Optionally use: [this](https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg?hl=en) extension
 
+<br>
+
 ## Features
 - You can choose the color you want the photo to be sorted by
     - `sqrt` (default)
