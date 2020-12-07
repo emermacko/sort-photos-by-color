@@ -95,7 +95,6 @@ a {
 
 #container {
     position: relative;
-    height: auto;
     width: 100vw;
     display: flex;
     flex-wrap: wrap;
@@ -240,7 +239,6 @@ a {
     }
 
     #content {
-        height: auto;
         display: flex;
         align-items: center;
         flex-direction: column;

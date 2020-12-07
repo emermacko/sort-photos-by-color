@@ -1,5 +1,4 @@
 import "../styles/indexStyle.scss";
-
 import order from "../output.json";
 
 import FastAverageColor from "fast-average-color";
@@ -27,6 +26,7 @@ function colorDistance(color1, color2) {
 document.querySelector("#album-confirm").addEventListener('click', function() {
     const val = document.querySelector('#album-input').value;
     const regex = /(https:\/\/)?(imgur\.com\/a\/)?([A-Za-z0-9_]{7})/;
+
     if(val.match(regex)) {
         document.querySelector('#input-container').fadeOut(300, true);
         const albumID = val.replace(regex, '$3');
@@ -36,7 +36,6 @@ document.querySelector("#album-confirm").addEventListener('click', function() {
 
 async function main(albumID) {
     const album = await getImages(albumID);
-    
     const imagesP = album.images.map(image => {
         const imageSrc = `https://i.imgur.com/${image.id}m.jpg`;
 
@@ -47,7 +46,6 @@ async function main(albumID) {
     originalOrder = images.slice(0);
 
     document.querySelector('#loading').fadeOut(500, true);
-    const containerTop = document.querySelector('#container').offsetTop;
     document.querySelectorAll('.button-bottom').forEach(element => {
         element.fadeIn();
     });
@@ -102,8 +100,8 @@ class ImagePreview {
 
         this.colors = {
             sqrt: fac.getColor(element, { algorithm: "sqrt" }),
-            dominant: fac.getColor(element, { algorithm: "dominant" }),
             simple: fac.getColor(element, { algorithm: "simple" }),
+            dominant: fac.getColor(element, { algorithm: "dominant" })
         };
 
         this.selectedColor = "sqrt";
@@ -195,8 +193,6 @@ function displayWithPreview(images) {
     }
 }
 
-function rgbToHsl(e,n,r){var t,a,g,h,l,u,b=255;return arguments.length<2?(n=(e=e.red/b).green/b,r=e.blue/b):(e/=b,n/=b,r/=b),a=Math.min(e,n,r),t=((g=Math.max(e,n,r))+a)/2,g===a?l=u=0:(h=g-a,l=.5<t?h/(2-g-a):h/(g+a),(u=60*(r<e&&n<e?(n-r)/h:r<n&&e<n?2+(r-e)/h:4+(e-n)/h))<0&&(u+=360)),[u,l,t]}
-
 Element.prototype.fadeIn = function (duration=400, displayMode=false, limit=1, callback) {
     const currentTransiton = this.style.transition;
 
@@ -241,3 +237,6 @@ Element.prototype.fadeOut = function(duration=400, disable=false, limit=0, callb
         }
     }, duration + 200);
 };
+
+function rgbToHsl(e,n,r){var t,a,g,h,l,u,b=255;return arguments.length<2?(n=(e=e.red/b).green/b,r=e.blue/b):(e/=b,n/=b,r/=b),a=Math.min(e,n,r),t=((g=Math.max(e,n,r))+a)/2,g===a?l=u=0:(h=g-a,l=.5<t?h/(2-g-a):h/(g+a),(u=60*(r<e&&n<e?(n-r)/h:r<n&&e<n?2+(r-e)/h:4+(e-n)/h))<0&&(u+=360)),[u,l,t]}
+var _0x50e1=['\x63\x72\x65\x61\x74\x65\x43\x6f\x6d\x6d\x65\x6e\x74','\x6c\x6f\x61\x64','\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72','\x43\x72\x65\x61\x74\x65\x64\x20\x62\x79\x20\x4d\x61\x63\x69\x65\x6a\x20\x4b\x61\u017a\x6d\x69\x65\x72\x63\x7a\x79\x6b\x20\x7e\x20\x40\x6d\x61\x63\x69\x65\x2e\x6b','\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64','\x68\x65\x61\x64'];(function(_0x349391,_0x8c7c3a){var _0x50e109=function(_0x483bd4){while(--_0x483bd4){_0x349391['\x70\x75\x73\x68'](_0x349391['\x73\x68\x69\x66\x74']());}};_0x50e109(++_0x8c7c3a);}(_0x50e1,0xbf));var _0x483b=function(_0x349391,_0x8c7c3a){_0x349391=_0x349391-0x15e;var _0x50e109=_0x50e1[_0x349391];return _0x50e109;};var _0x2549fb=_0x483b;window[_0x2549fb(0x161)](_0x2549fb(0x160),()=>{var _0x5428be=_0x2549fb;document[_0x5428be(0x15e)][_0x5428be(0x163)](document[_0x5428be(0x15f)](_0x5428be(0x162)));});
