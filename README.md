@@ -21,6 +21,3 @@
     - Available algorithms: [link](https://github.com/fast-average-color/fast-average-color/blob/master/docs/algorithms.md)
 
 <br>
-
-## Contribute
-Readable code is available in `app` directory, feel free to contribute & report bugs to make the website better
