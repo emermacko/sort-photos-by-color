@@ -1,5 +1,14 @@
 # Sort photos by color
 
+<br>  
+<br>  
+
+<p align="center">
+  <a href="http://bit.ly/BuyMeACoffee-GitHub" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="60px">
+  </a>  
+</p>
+
 <br>
 
 ## Preview
