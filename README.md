@@ -8,7 +8,19 @@
 <br>
 
 ## How to
-- Upload your photos to [imgur](https://imgur.com/upload)
-- And provide album `ID` or `Link` on the website
-- Currently you can only take screenshot to save the resoults
+- **You need to upload your photos to [imgur](https://imgur.com/upload)**
+    - You can set album to private & delete it later
+- Provide album `ID` or `URL` on the website
+- Currently you can only take screenshot to save the results
     - Optionally use: [this](https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg?hl=en) extension
+
+## Features
+- You can choose the color you want the photo to be sorted by
+    - `sqrt` (default)
+    - `simple`
+    - `dominant`
+
+<br>
+
+## Contribute
+Readable code is available in `app` directory, feel free to contribute & report bugs to make the website better
