@@ -8,6 +8,7 @@ const CLIENT_ID = "084e31407b21fa0";
 const balance = [1, 0, 0.1];
 
 var originalOrder;
+var relativeTo = [0, 0, 0]
 
 window.addEventListener("load", () => {
     document.querySelector('#content').fadeIn();
@@ -54,8 +55,8 @@ async function main(albumID) {
         images.sort((i1, i2) => {
             const c1 = i1.colors[i1.selectedColor];
             const c2 = i2.colors[i2.selectedColor];
-            const dist1 = colorDistance(c1.value, [0, 0, 0]);
-            const dist2 = colorDistance(c2.value, [0, 0, 0]);
+            const dist1 = colorDistance(c1.value, relativeTo);
+            const dist2 = colorDistance(c2.value, relativeTo);
 
             return dist2 - dist1;
         });
@@ -78,6 +79,27 @@ async function main(albumID) {
         });
     });
     window.render(images);
+
+    document.querySelectorAll('.img').forEach(img => {
+        img.addEventListener('click', function() {
+            if(img.classList.contains('selected')) {
+                img.classList.remove('selected');
+                relativeTo = [0, 0, 0];
+            } else {
+                document.querySelectorAll('.img.selected').forEach(img2 => {
+                    img2.classList.remove('selected')
+                })
+                const selected = this.parentNode
+                    .querySelector('.preview-color-container')
+                    .querySelector('.selected');
+                const colorStyle = selected.style.backgroundColor;
+                const rgb = colorStyle.substring('4').slice(0, -1).split(', ')
+                    .map(color => parseInt(color));
+                relativeTo = rgb;
+                img.classList.add('selected');
+            }
+        });
+    });
 }
 
 document.querySelector('#reset').addEventListener('click', function() {
